@@ -1,0 +1,115 @@
+/* General Body Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f9dfdf, #f1c3a2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Allow content to take its full height */
+    min-height: 100vh; /* Ensures full viewport height */
+    width: 100vw;
+    box-sizing: border-box;
+   
+  }
+  
+  /* Authpage Container */
+  .authpage-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    height: auto;
+    width: 1200px; /* Full width */
+    max-width: none; /* No maximum width */
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding fits within the width */
+    min-height: auto; /* Avoid fixed height restrictions */
+    margin: 20px; /* Add some space around the container */
+    overflow: hidden; /* Prevent any overflow issues */
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 3px solid black;
+   margin-top: 5px;
+  }
+  
+  /* Loader Styling */
+  .authpage-loader {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Title Styling */
+  .authpage-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Content Styling */
+  .authpage-content {
+    font-size: 16px;
+    color: #555;
+    width: 100%; /* Ensure content spans the full width */
+    text-align: left; /* Optional: align text left */
+  }
+  
+  /* Button Styling */
+  .authpage-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%; /* Button spans the full width */
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .authpage-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Error Message Styling */
+  .authpage-error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+  
+    .authpage-container {
+      padding: 30px;
+    }
+  
+    .authpage-title {
+      font-size: 24px;
+    }
+  
+    .authpage-button {
+      font-size: 16px;
+    }
+  }
+  
+  /* Fade-in animation for loader */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

@@ -1,0 +1,71 @@
+/* Profilepage Container */
+.profilepage-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Title Styling */
+  .profilepage-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Welcome Message Styling */
+  .profilepage-welcome {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Logout Button Styling */
+  .profilepage-logout {
+    background-color: #f44336;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .profilepage-logout:hover {
+    background-color: #e53935;
+  }
+  
+  /* Loading Message Styling */
+  .profilepage-loading {
+    font-size: 16px;
+    color: #999;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .profilepage-container {
+      width: 90%;
+      padding: 30px;
+    }
+  
+    .profilepage-title {
+      font-size: 24px;
+    }
+  
+    .profilepage-welcome {
+      font-size: 18px;
+    }
+  
+    .profilepage-logout {
+      font-size: 16px;
+      padding: 10px 15px;
+    }
+  }
+  
