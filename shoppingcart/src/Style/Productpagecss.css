@@ -1,56 +1,82 @@
 /* Container styling */
 .shopping-section {
-    padding: 50px 20px;
-    width: 1200px;
-    background-color: #cbd5e1; /* Equivalent to Tailwind's bg-slate-400 */
-  }
+  padding: 30px 1px; /* Reduce padding for mobile screens */
+  /* Make it responsive for smaller devices */
+  width: 1500px; /* Limit the max width */
+  background-color: #94b2d8; /* Equivalent to Tailwind's bg-slate-400 */
+  border-radius: 15px;
+}
+
+.container {
+  width: 100%; /* Use full width on mobile */
+  margin: 0 auto;
+  padding: 0 10px; /* Reduce padding for smaller screens */
   
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    
-  }
+}
+
+/* Heading styling */
+.heading {
+  text-align: center;
+  margin-bottom: 20px; /* Reduce margin for better spacing on mobile */
+}
+
+.heading h2 {
+  font-size: 1.5rem; /* Reduce font size for smaller screens */
+  font-weight: 300;
+  color: #1e293b; /* Equivalent to Tailwind's text-gray-950 */
+}
+
+/* Grid styling */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust column size for smaller screens */
+  gap: 15px; /* Reduce gap for better spacing */
+  margin-top: 15px; /* Reduce margin */
   
-  /* Heading styling */
-  .heading {
-    text-align: center;
-    margin-bottom: 30px;
+}
+
+/* Placeholder for individual product items */
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px; /* Adjust padding for compactness */
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slightly reduce shadow for cleaner look */
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-item h3 {
+  font-size: 1rem; /* Reduce font size */
+  margin-top: 8px; /* Adjust margin for better spacing */
+  color: #1e293b;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 600px) {
+  .shopping-section {
+      padding: 20px 5px; /* Further reduce padding for small screens */
   }
-  
+
   .heading h2 {
-    font-size: 2rem;
-    font-weight: 300;
-    color: #1e293b; /* Equivalent to Tailwind's text-gray-950 */
+      font-size: 1.2rem; /* Reduce heading size on small devices */
   }
-  
-  /* Grid styling */
+
   .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Smaller column size for narrow screens */
+      gap: 10px; /* Reduce gap */
   }
-  
-  /* Placeholder for individual product items */
+
   .product-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    background-color: #fff;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 8px; /* Compact padding */
   }
-  
-  .product-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
+
   .product-item h3 {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    color: #1e293b;
+      font-size: 0.9rem; /* Smaller font size for product names */
   }
-  
+}

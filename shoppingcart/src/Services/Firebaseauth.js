@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDoEFBGSTYXBF_2L4fjGxvDfgxf_ci3iuk",
@@ -8,11 +9,11 @@ const firebaseConfig = {
   storageBucket: "fir-authjs-9523d.firebasestorage.app",
   messagingSenderId: "38088133720",
   appId: "1:38088133720:web:404d68efccb4ed9cc44e2d",
-  measurementId: "G-VLLRX0L2FK"
+  measurementId: "G-VLLRX0L2FK",
 };
-
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-export default auth;
+export { auth, db };

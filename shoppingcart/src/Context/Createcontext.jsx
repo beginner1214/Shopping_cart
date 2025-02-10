@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, db } from "../Services/Firebaseauth.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const ShoppingcartContext = createContext({});
 
@@ -8,12 +10,47 @@ function ShoppingcartContextProvider({ children }) {
   const [loadingstate, setloadingstate] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [productdetails, setproductdetails] = useState(null);
-  const [cartitems, setcartitems] = useState(() => {
-    // Initialize cart items from localStorage
-    const savedCart = localStorage.getItem("cartitems");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  const [cartitems, setcartitems] = useState([]);
   const Navigate = useNavigate();
+
+  // Fetch cart items from Firestore when user changes
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      if (!auth.currentUser) {
+        // If no user, clear cart
+        setcartitems([]);
+        localStorage.removeItem("cartitems");
+        return;
+      }
+
+      try {
+        const userDocRef = doc(db, "users", auth.currentUser.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists() && userDoc.data().cartItems) {
+          const validCartItems = userDoc.data().cartItems.map((item) => ({
+            ...item,
+            quantity: item.quantity || 1,
+            totalPrice: (item.quantity || 1) * item.price,
+          }));
+
+          setcartitems(validCartItems);
+          localStorage.setItem("cartitems", JSON.stringify(validCartItems));
+        } else {
+          // If no cart items exist for the user, set an empty cart
+          await setDoc(userDocRef, { cartItems: [] }, { merge: true });
+          setcartitems([]);
+          localStorage.removeItem("cartitems");
+        }
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+        setcartitems([]);
+        localStorage.removeItem("cartitems");
+      }
+    };
+
+    fetchCartItems();
+  }, [auth.currentUser]);
 
   // Fetch all products
   const Fetchdata = async () => {
@@ -34,7 +71,12 @@ function ShoppingcartContextProvider({ children }) {
   };
 
   // Handle adding products to cart
-  const Handleaddtocart = (product) => {
+  const Handleaddtocart = async (product) => {
+    if (!auth.currentUser) {
+      alert("Please log in to add items to cart");
+      return;
+    }
+
     let updatedCartItems = [...cartitems];
     const productIndex = updatedCartItems.findIndex(
       (item) => item.id === product.id
@@ -53,15 +95,32 @@ function ShoppingcartContextProvider({ children }) {
       updatedCartItems[productIndex].totalPrice += product.price;
     }
 
-    setcartitems(updatedCartItems);
-    localStorage.setItem("cartitems", JSON.stringify(updatedCartItems));
-    Navigate("/cart");
+    try {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      await setDoc(userDocRef, { cartItems: updatedCartItems }, { merge: true });
+
+      setcartitems(updatedCartItems);
+      localStorage.setItem("cartitems", JSON.stringify(updatedCartItems));
+      Navigate("/cart");
+    } catch (error) {
+      console.error("Error updating cart:", error);
+      alert("Failed to update cart. Please try again.");
+    }
   };
 
   // Handle clearing cart (optional utility)
-  const ClearCart = () => {
-    setcartitems([]);
-    localStorage.removeItem("cartitems");
+  const ClearCart = async () => {
+    if (!auth.currentUser) return;
+
+    try {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      await setDoc(userDocRef, { cartItems: [] }, { merge: true });
+
+      setcartitems([]);
+      localStorage.removeItem("cartitems");
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +138,7 @@ function ShoppingcartContextProvider({ children }) {
         setcartitems,
         setproductdetails,
         Handleaddtocart,
-        ClearCart, // Optional: Expose ClearCart if needed
+        ClearCart,
       }}
     >
       {children}

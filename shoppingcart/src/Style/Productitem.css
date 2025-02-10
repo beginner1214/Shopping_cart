@@ -2,7 +2,7 @@
 .product-item {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px; /* Adjusted for smaller screens */
   text-align: center;
   background-color: #fff;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -17,8 +17,7 @@
 /* Image container for proper image scaling */
 .image-container {
   width: 100%;
-  padding-top: 75%;
-  /* Maintain aspect ratio (4:3) */
+  padding-top: 75%; /* Maintain aspect ratio (4:3) */
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -36,8 +35,8 @@
 
 /* Styling for product title */
 .product-title {
-  margin-top: 12px;
-  font-size: 1rem;
+  margin-top: 10px; /* Adjusted margin */
+  font-size: 0.9rem; /* Slightly smaller font size for mobile */
   font-weight: 600;
   color: #333;
   overflow: hidden;
@@ -47,8 +46,8 @@
 
 /* Styling for product price */
 .product-price {
-  margin-top: 8px;
-  font-size: 1.2rem;
+  margin-top: 6px; /* Adjusted margin */
+  font-size: 1rem; /* Slightly smaller font size */
   font-weight: 700;
   color: #27ae60;
   /* Green color for price */
@@ -56,7 +55,7 @@
 
 /* Styling for the button container */
 .Buttondetails {
-  margin-top: 12px;
+  margin-top: 10px; /* Reduced margin for mobile */
   text-align: center;
 }
 
@@ -64,10 +63,10 @@
 .Buttondetails button {
   background-color: #000;
   color: #fff;
-  padding: 10px 20px;
+  padding: 8px 16px; /* Adjusted padding for smaller buttons */
   border: none;
   border-radius: 25px;
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Smaller font size for compactness */
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
@@ -78,3 +77,26 @@
   transform: translateY(-5px);
 }
 
+/* Mobile-specific adjustments */
+@media (max-width: 600px) {
+  .product-item {
+    padding: 8px; /* Compact padding */
+  }
+
+  .image-container {
+    padding-top: 100%; /* Adjust to 1:1 aspect ratio for mobile */
+  }
+
+  .product-title {
+    font-size: 0.8rem; /* Smaller font size for titles */
+  }
+
+  .product-price {
+    font-size: 0.9rem; /* Adjust font size for pricing */
+  }
+
+  .Buttondetails button {
+    padding: 6px 12px; /* Compact button padding */
+    font-size: 0.7rem; /* Smaller font size for buttons */
+  }
+}

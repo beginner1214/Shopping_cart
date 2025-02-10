@@ -1,7 +1,7 @@
 /* General Body Styling */
 body {
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #f9dfdf, #f1c3a2);
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
     margin: 0;
     padding: 0;
     display: flex;
@@ -20,7 +20,7 @@ body {
     padding: 40px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     height: auto;
-    width: 1200px; /* Full width */
+    width: 1400px; /* Full width */
     max-width: none; /* No maximum width */
     text-align: center;
     box-sizing: border-box; /* Ensure padding fits within the width */

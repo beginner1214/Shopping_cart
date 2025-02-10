@@ -1,64 +1,163 @@
 .cart-container {
-   width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 50px;
+  width: 100%;
+  /* Make the container responsive */
+  max-width: 1200px;
+  /* Limit the maximum width */
+  margin: 0 auto;
+  padding: 15px;
+  /* Adjust padding for smaller screens */
+  margin-top: 30px;
+  /* Reduce top margin */
   
-  }
   
-  .cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .cart-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .cart-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
-  
-  .cart-details {
-    flex: 1;
-  }
-  
-  .cart-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .cart-summary {
-    text-align: right;
-    margin-top: 20px;
-  }
-  
-  .remove-button {
-    color: red;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-  .checkoutbut{
-    height: 50px;
-    width: 200px;
-    background-color: rgb(242, 245, 240);
-    padding: 10px;
-    border-radius: 20px;
-    margin-top: 5px;
-  }
-  .checkoutbut:hover{
-    height: 50px;
-    width: 200px;
-    background-color: chartreuse;
-    padding: 10px;
-    border-radius: 20px;
-  }
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size:larger;
+  /* Reduce gap between items */
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  /* Stack items on smaller screens */
+  align-items: flex-start;
+  /* Align items to the left for smaller screens */
+  gap: 20px;
+  /* Adjust gap for smaller items */
+  border: 3px solid #ccc;
+  padding: 50px;
+}
+
+.cart-image {
+  width: 150px;
+  /* Reduce image size for smaller screens */
+  height: 120px;
+  object-fit: cover;
+  font-size: 45px;
+}
+
+.cart-details {
+  flex: 1;
+}
+
+.cart-actions {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allow buttons to wrap on smaller screens */
+  gap: 8px;
+  align-items: center;
+}
+
+.cart-summary {
+  text-align: right;
+  margin-top: 15px;
+  /* Reduce top margin */
+  font-size: 0.9rem;
+  /* Adjust font size for better readability */
+}
+
+.remove-button {
+  color: red;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  /* Adjust button font size */
+}
+.checkoutbut {
+  height: 45px;
+  width: 180px;
+  background: linear-gradient(135deg, #1dd1a1, #10ac84);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.checkoutbut:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #10ac84, #1dd1a1);
+}
+
+.checkoutbut:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: all 0.6s ease;
+}
+
+.checkoutbut:hover::before {
+  left: 100%;
+}
+
+.checkoutbut:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.quantity-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #1dd1a1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantity-btn:hover {
+  background-color: #10ac84;
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.quantity-btn:active {
+  transform: scale(0.95);
+}
+
+.quantity-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.quantity-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  min-width: 30px;
+  text-align: center;
+}

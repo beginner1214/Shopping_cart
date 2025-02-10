@@ -67,7 +67,7 @@ const Loginpage = () => {
               Forgot Password?
             </a>
             <p>
-              Don't have an account? <a href="/signup">Sign Up</a>
+              Don't have an account? <a href="/register">Sign Up</a>
             </p>
           </div>
         </form>

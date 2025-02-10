@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import auth from "../Services/Firebaseauth.js";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../Services/Firebaseauth.js"; // Changed import
 
 export const AuthContext = createContext();
 
@@ -9,16 +9,15 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-        setCurrentUser(user);
-        setLoading(false);
-      });
-      return () => unsubscribe();
-    } catch (error) {
-      console.error("Error initializing auth state:", error);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
       setLoading(false);
-    }
+    }, (error) => {
+      console.error("Auth state change error:", error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const logout = async () => {
@@ -27,12 +26,22 @@ function AuthProvider({ children }) {
       window.location.href = "/";
     } catch (error) {
       console.error("Error logging out:", error);
+      // Optionally, you could add a toast or error notification here
     }
   };
 
+  // Optional: Add method to check if user is authenticated
+  const isAuthenticated = () => !!currentUser;
+
   return (
-    <AuthContext.Provider value={{ currentUser, logout }}>
-      {!loading && children}
+    <AuthContext.Provider 
+      value={{ 
+        currentUser, 
+        logout, 
+        isAuthenticated 
+      }}
+    >
+      {!loading ? children : <div>Loading...</div>}
     </AuthContext.Provider>
   );
 }
